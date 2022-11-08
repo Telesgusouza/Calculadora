@@ -1,0 +1,100 @@
+{
+  "light": {
+    "backgrounds": {
+      "main": "hsl(0, 0%, 90%)",
+      "toggle": "hsl(0, 5%, 81%)",
+      "screen": "hsl(0, 0%, 93%)"
+    },
+
+    "keys": {
+      "Background": "hsl(185, 42%, 37%)",
+      "backgroundHover2": "hsl(185, 40%, 56%)",
+      "Shadow1": "hsl(185, 58%, 25%)",
+
+      "BackgroundToggle": "hsl(25, 98%, 40%)",
+      "backgroundHover3": "hsl(25, 100%, 60%)",
+      "Shadow2": "hsl(25, 99%, 27%)",
+
+      "background2": "hsl(45, 7%, 89%)",
+      "backgroundHover": "hsl(0, 0%, 100%)",
+      "shadow3": "hsl(35, 11%, 61%)"
+    },
+
+    "text": {
+      "text1": "hsl(60, 10%, 19%)",
+      "text2": "hsl(0, 0%, 100%)"
+    },
+
+    "position": 37
+  },
+
+
+
+
+  "dark": {
+    "backgrounds": {
+      "main": "hsl(222, 26%, 31%)",
+      "toggle": "hsl(223, 31%, 20%)",
+      "screen": "hsl(224, 36%, 15%)"
+    },
+
+    "keys": {
+
+      "backgroundHover3": "hsl(6, 92%, 66%)",
+      "backgroundHover2":"hsl(223, 51%, 75%)",
+      "backgroundHover": "hsl(0, 0%, 100%)",
+
+      "Background": "hsl(225, 21%, 49%)",
+      "Shadow1": "hsl(224, 28%, 35%)",
+
+      "BackgroundToggle": "hsl(6, 63%, 50%)",
+      "Shadow2": "hsl(6, 70%, 34%)",
+
+      "background2": "hsl(30, 25%, 89%)",
+      "shadow3": "hsl(30, 25%, 89%)"
+    },
+
+    "text": {
+      "text1": "hsl(221, 14%, 31%)",
+      "text2": "hsl(0, 0%, 100%)"
+    },
+
+    "position": 0
+  },
+
+
+
+
+
+  "veryDark": {
+    "backgrounds": {
+      "main": "hsl(268, 75%, 9%)",
+      "toggle": "hsl(268, 71%, 12%)",
+      "screen": "hsl(268, 71%, 12%)"
+    },
+
+    "keys": {
+
+      "backgroundHover3": "hsl(176, 100%, 79%)",
+      "backgroundHover2":"hsl(279, 35%, 51%)",
+      "backgroundHover": "hsl(267, 53%, 43%)",
+
+      "Background": "hsl(281, 89%, 26%)",
+      "Shadow1": "hsl(285, 91%, 52%)",
+
+      "BackgroundToggle": "hsl(176, 100%, 44%)",
+      "Shadow2": "hsl(177, 92%, 70%)",
+
+      "background2": "hsl(268, 47%, 21%)",
+      "shadow3": "hsl(290, 70%, 36%)"
+    },
+
+    "text": {
+      "text1": "hsl(52, 100%, 62%)",
+      "text2": "hsl(0, 0%, 100%)",
+      "text3": "hsl(198, 20%, 13%)"
+    },
+
+    "position": 76
+  }
+}
