@@ -9,33 +9,87 @@ import Screen from "../Screen";
 export default function CalculatorScope() {
   const { theme } = useContext(MyContext);
 
-  const [valueScreen, setValueScreen] = useState(0);
+  const [valueScreen, setValueScreen] = useState([]);
+  const [saveOperator, setSaveOperator] = useState([]);
+
   const [screenOperators, setScreenOperators] = useState([]);
 
   useEffect(() => {
-
     const regNumber = /[0-9]/;
-    // && regNumber.test(screenOperators)
-    if (screenOperators.join("") !== "" ) {
-        // console.log(screenOperators.join("") !== "");
-        setValueScreen(screenOperators.join(""));
+    let saveValueScreen = valueScreen;
+    let lastOperator = screenOperators[screenOperators.length - 1];
+
+    // console.log('saveOperator', saveOperator);
+    // console.log('valueScreen', valueScreen);
+    // console.log('screenOperators', screenOperators);
+    // console.log('');
+    // console.log(regNumber.test(lastOperator) || screenOperators.length === 0 || lastOperator !== 'del');
+
+    // console.log(lastOperator)
+
+    
+
+    if (regNumber.test(lastOperator) || screenOperators.length === 0) {
+      setValueScreen(saveOperator.join(""));
+    } else if (!regNumber.test(lastOperator) && lastOperator !== "del") {
+      // setSaveOperator([]);
+      // // console.log('apenas operadores')
+      // switch(lastOperator) {
+      //     case '=': {
+      //         // console.log('pressionado =')
+      //         break
+      //     }
+      //     case 'reset': {
+      //         // console.log('pressionado reset')
+      //         break
+      //     }
+      //     default: {
+      //         // console.log('outros operadores')
+      //     }
+      // }
     }
-
-
   }, [screenOperators]);
 
-  function handleValueScreen(value) {
-    console.log(value);
-
+  function operators(value) {
     const regNumber = /[0-9]/;
-    if (regNumber.test(value)) {
-      setScreenOperators((screen) => [...screen, value]);
-    } else {
+    let lastOperator = screenOperators[screenOperators.length - 1];
 
+    if (screenOperators.length > 0 && value === "del") {
+      console.log("não ta chegando nesse caraio");
+
+      let arrayOperators = screenOperators;
+      arrayOperators.pop();
+      setScreenOperators(arrayOperators);
+
+
+      let arraysaveOperator = saveOperator;
+      arraysaveOperator.pop(); 
+      setSaveOperator(arraysaveOperator);
+
+      setValueScreen(saveOperator.join(''));
     }
 
+    if (regNumber.test(lastOperator) && value !== "del") {
+      setScreenOperators((operators) => [...operators, value]);
+    }
   }
-  //   console.log(screenOperators);
+
+  function handleValueScreen(value) {
+    const regNumber = /[0-9]/;
+
+    let lastOperator = screenOperators[screenOperators.length - 1];
+
+    if (regNumber.test(value)) {
+      setSaveOperator((operators) => [...operators, value]);
+      setScreenOperators((operators) => [...operators, value]);
+    } else {
+      operators(value);
+
+      //   if (regNumber.test(lastOperator)) {
+      //     setScreenOperators((operators) => [...operators, value]);
+      //   }
+    }
+  }
 
   return (
     <Styled.Container className="center">
