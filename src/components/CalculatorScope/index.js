@@ -19,34 +19,8 @@ export default function CalculatorScope() {
     let saveValueScreen = valueScreen;
     let lastOperator = screenOperators[screenOperators.length - 1];
 
-    // console.log('saveOperator', saveOperator);
-    // console.log('valueScreen', valueScreen);
-    // console.log('screenOperators', screenOperators);
-    // console.log('');
-    // console.log(regNumber.test(lastOperator) || screenOperators.length === 0 || lastOperator !== 'del');
-
-    // console.log(lastOperator)
-
-    
-
     if (regNumber.test(lastOperator) || screenOperators.length === 0) {
       setValueScreen(saveOperator.join(""));
-    } else if (!regNumber.test(lastOperator) && lastOperator !== "del") {
-      // setSaveOperator([]);
-      // // console.log('apenas operadores')
-      // switch(lastOperator) {
-      //     case '=': {
-      //         // console.log('pressionado =')
-      //         break
-      //     }
-      //     case 'reset': {
-      //         // console.log('pressionado reset')
-      //         break
-      //     }
-      //     default: {
-      //         // console.log('outros operadores')
-      //     }
-      // }
     }
   }, [screenOperators]);
 
@@ -54,23 +28,48 @@ export default function CalculatorScope() {
     const regNumber = /[0-9]/;
     let lastOperator = screenOperators[screenOperators.length - 1];
 
+    // operador delete
     if (screenOperators.length > 0 && value === "del") {
-      console.log("não ta chegando nesse caraio");
-
-      let arrayOperators = screenOperators;
-      arrayOperators.pop();
-      setScreenOperators(arrayOperators);
-
-
+      // tirando 1 operador da tela
       let arraysaveOperator = saveOperator;
-      arraysaveOperator.pop(); 
+      arraysaveOperator.pop();
       setSaveOperator(arraysaveOperator);
 
-      setValueScreen(saveOperator.join(''));
+      setValueScreen(saveOperator.join(""));
+
+      let arrayOperators = screenOperators;
+      if (!regNumber.test(lastOperator)) {
+        arrayOperators.pop();
+        arrayOperators.pop();
+
+        setScreenOperators(arrayOperators);
+
+        return;
+      }
+      arrayOperators.pop();
+
+      setScreenOperators(arrayOperators);
     }
 
-    if (regNumber.test(lastOperator) && value !== "del") {
+    if (screenOperators.length > 0 && value === "reset") {
+      console.log("foi clicado reset");
+      setValueScreen([]);
+      setSaveOperator([]);
+      setScreenOperators([]);
+    }
+
+    if (regNumber.test(lastOperator) && value !== "del" && value !== "reset") {
       setScreenOperators((operators) => [...operators, value]);
+      setSaveOperator([]);
+    }
+
+    if(screenOperators.length > 0 && value === "=") {
+      
+        
+
+        console.log(regNumber.test(lastOperator));
+
+        console.log(screenOperators.join(''));
     }
   }
 
@@ -84,10 +83,6 @@ export default function CalculatorScope() {
       setScreenOperators((operators) => [...operators, value]);
     } else {
       operators(value);
-
-      //   if (regNumber.test(lastOperator)) {
-      //     setScreenOperators((operators) => [...operators, value]);
-      //   }
     }
   }
 
