@@ -13,8 +13,7 @@ export const ContainerContent = styled.div`
 
   transition: all 0.2s ease-in-out;
 
-  /* div {
-  } */
+  
 `;
 
 export const ContentButtons = styled.div`
@@ -22,6 +21,10 @@ export const ContentButtons = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
+
+  @media (max-width: 345px) {
+    grid-gap: 15px;
+  }
 `;
 
 export const ButtonCalculator = styled.div`
@@ -66,6 +69,12 @@ export const ContainerResetOrEqual = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
+
+  
+  @media (max-width: 345px) {
+    margin-top: 15px;
+    grid-gap: 15px;
+  }
 `;
 
 export const ButtonFinally = styled.button`

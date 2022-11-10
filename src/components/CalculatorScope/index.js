@@ -9,6 +9,8 @@ import Screen from "../Screen";
 export default function CalculatorScope() {
   const { theme } = useContext(MyContext);
 
+  const [resultSave, setResultSave] = useState(null);
+
   const [valueScreen, setValueScreen] = useState([]);
   const [saveOperator, setSaveOperator] = useState([]);
 
@@ -28,7 +30,7 @@ export default function CalculatorScope() {
     const regNumber = /[0-9]/;
     let lastOperator = screenOperators[screenOperators.length - 1];
 
-    // operador delete
+    // Operadores
     if (screenOperators.length > 0 && value === "del") {
       // tirando 1 operador da tela
       let arraysaveOperator = saveOperator;
@@ -52,7 +54,6 @@ export default function CalculatorScope() {
     }
 
     if (screenOperators.length > 0 && value === "reset") {
-      console.log("foi clicado reset");
       setValueScreen([]);
       setSaveOperator([]);
       setScreenOperators([]);
@@ -63,25 +64,49 @@ export default function CalculatorScope() {
       setSaveOperator([]);
     }
 
-    if(screenOperators.length > 0 && value === "=") {
-      
-        
+    if (screenOperators.length > 0 && value === "=") {
+      if (regNumber.test(lastOperator)) {
+        let resolve = eval(screenOperators.join(""));
+        setResultSave(resolve);
 
-        console.log(regNumber.test(lastOperator));
+        setValueScreen(resolve);
+      } else {
+        let arrayOperators = screenOperators;
+        arrayOperators.pop();
+        setScreenOperators(arrayOperators);
 
-        console.log(screenOperators.join(''));
+        let resolve = eval(screenOperators.join(""));
+        setResultSave(resolve);
+
+        setScreenOperators([]);
+
+        setValueScreen(resolve);
+      }
     }
   }
+
+  console.log(screenOperators);
 
   function handleValueScreen(value) {
     const regNumber = /[0-9]/;
 
-    let lastOperator = screenOperators[screenOperators.length - 1];
-
+  
     if (regNumber.test(value)) {
+
+      if (resultSave !== null) {
+        setScreenOperators([]);
+        setResultSave(null);
+      }
+
       setSaveOperator((operators) => [...operators, value]);
       setScreenOperators((operators) => [...operators, value]);
+      
     } else {
+      if (resultSave !== null) {
+        setScreenOperators([resultSave, value]);
+        setResultSave(null);
+      }
+
       operators(value);
     }
   }
@@ -234,7 +259,7 @@ export default function CalculatorScope() {
             bg={themeData[theme].keys.background2}
             shadow={themeData[theme].keys.shadow3}
             color={themeData[theme].text.text1}
-            onClick={() => handleValueScreen("x")}
+            onClick={() => handleValueScreen("*")}
           >
             <button>x</button>
           </Styled.ButtonCalculator>
