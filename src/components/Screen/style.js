@@ -12,6 +12,10 @@ export const Container = styled.div`
     font-size: 3em;
     text-align: right;
     transition: all .2s ease-in-out;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
   }
 
 `;

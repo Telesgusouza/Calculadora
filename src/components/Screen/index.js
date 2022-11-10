@@ -12,7 +12,6 @@ export default function Screen({ value = 0 }) {
       color={theme === "dark" ? "white" : themeData[theme].text.text1}
     >
       <h2>{value.length === 0 ? 0 : value}</h2>
-      {/* <h2>{value}</h2> */}
     </Styled.Container>
   );
 }
